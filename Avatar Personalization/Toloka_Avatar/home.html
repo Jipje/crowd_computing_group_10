@@ -1,8 +1,22 @@
 <!-- HTML task markup goes here -->
 <html>
     <body>
-        <div id="avatarImage"></div>
+        <div id="isTask">{{isTask}}</div>
 
+        <div id="avatarImage"></div>
+        <br />
         <div id="types"></div>
+
+        <div id="task">
+            <div id="question">
+                Find the <b>middle name</b> of this person: <br />
+                <br />
+                Name: <b>{{first_name}}</b> <br />
+                Profession: <b>{{profession}}</b>
+            </div>
+
+            <br />
+            {{field type="input" name="url" width="100%" placeholder="Middle name(s)"}}
+        </div>
     </body>
 </html>

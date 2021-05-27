@@ -183,49 +183,14 @@ const skinColors = [
 
 const types = {
     avatarStyles: {
-        name: "Background Style",
+        name: "Background",
         options: ['Transparent', 'Circle'],
         selection: "Transparent"
     },
-    topTypes: {
-        name: "Top",
-        options: topTypes,
-        selection: "NoHair"
-    },
-    accessoriesTypes: {
-        name: "Accessories",
-        options: accessoriesTypes,
-        selection: "Blank"
-    },
-    facialHairColors: {
-        name: "Facial Hair Color",
-        options: facialHairColors,
-        selection: "Black"
-    },
-    facialHairTypes: {
-        name: "Facial Hair",
-        options: facialHairTypes,
-        selection: "Blank"
-    },
-    hairColors: {
-        name: "Hair Color",
-        options: hairColors,
-        selection: "Black"
-    },
-    hatColors: {
-        name: "Hat Color",
-        options: hatColors,
-        selection: "Black"
-    },
-    clotheTypes: {
-        name: "Clothes",
-        options: clotheTypes,
-        selection: "ShirtScoopNeck"
-    },
-    clotheColors: {
-        name: "Fabric Colour",
-        options: clotheColors,
-        selection: "Black"
+    skinColors: {
+        name: "Skin",
+        options: skinColors,
+        selection: "Yellow"
     },
     eyeTypes: {
         name: "Eyes",
@@ -242,24 +207,69 @@ const types = {
         options: mouthTypes,
         selection: "Default"
     },
-    skinColors: {
-        name: "Skin",
-        options: skinColors,
-        selection: "Yellow"
+    topTypes: {
+        name: "Top",
+        options: topTypes,
+        selection: "NoHair"
+    },
+    hairColors: {
+        name: "Hair Color",
+        options: hairColors,
+        selection: "Black"
+    },
+    hatColors: {
+        name: "Hat Color",
+        options: hatColors,
+        selection: "Black"
+    },
+    accessoriesTypes: {
+        name: "Accessories",
+        options: accessoriesTypes,
+        selection: "Blank"
+    },
+    facialHairTypes: {
+        name: "Facial Hair",
+        options: facialHairTypes,
+        selection: "Blank"
+    },
+    facialHairColors: {
+        name: "Facial Hair Color",
+        options: facialHairColors,
+        selection: "Black"
+    },
+    clotheTypes: {
+        name: "Clothes",
+        options: clotheTypes,
+        selection: "ShirtScoopNeck"
+    },
+    clotheColors: {
+        name: "Fabric Colour",
+        options: clotheColors,
+        selection: "Black"
     }
 }
 
 exports.Task = extend(TolokaHandlebarsTask, function (options) {
   TolokaHandlebarsTask.call(this, options);
 }, {
+    // DOM element for task is formed (available via #getDOMElement())
     onRender: function() {
-        // DOM element for task is formed (available via #getDOMElement()) 
-        loadAvatar(this.getDOMElement())
-        loadOptions(this.getDOMElement())
-    },
+        loadAvatar(this.getDOMElement());
 
+        if (this.getDOMElement().querySelector("#isTask").innerText !== "true") {
+            this.getDOMElement().querySelector("#task").remove();
+            loadOptions(this.getDOMElement());
+        }
+
+        this.getDOMElement().querySelector("#isTask").remove();
+    },
+    // Task is completed. Global resources can be released (if used)
     onDestroy: function() {
-        // Task is completed. Global resources can be released (if used)
+        
+    },
+    // Task is in focus, reload the avatar
+    onFocus: function() {
+        loadAvatar(this.getDOMElement());
     }
 });
 
@@ -268,6 +278,7 @@ function loadOptions(dom) {
 
     for (const [key, type] of Object.entries(types)) {
         let div = document.createElement("div");
+        div.setAttribute("id", "avatar_option")
         optionsDiv.appendChild(div);
 
         let labelElement = document.createElement("label");
@@ -279,13 +290,13 @@ function loadOptions(dom) {
         let selectElement = document.createElement("select");
         selectElement.addEventListener("change", function() {
             for (const [key, type] of Object.entries(types)) {
-                types[key].selection = dom.querySelector("#"+key).value
+                types[key].selection = dom.querySelector("#" + key).value;
             }
             loadAvatar(dom);
         });
 
         selectElement.setAttribute("name", key);
-        selectElement.id =key;
+        selectElement.id = key;
 
         for (const option of Object.values(type.options)) {
             let optionElement = document.createElement("option");
@@ -316,7 +327,8 @@ function loadAvatar(dom) {
     'mouthType='        + types.mouthTypes.selection          + '&' +
     'skinColor='        + types.skinColors.selection          + '&';
 
-    dom.querySelector("#avatarImage").innerHTML = "<img id='avatar' src='" + url + "' />"
+    // Append avatar based on options
+    dom.querySelector("#avatarImage").innerHTML = "<img id='avatar' src='" + url + "' />";
 }
 
 function extend(ParentClass, constructorFunction, prototypeHash) {
