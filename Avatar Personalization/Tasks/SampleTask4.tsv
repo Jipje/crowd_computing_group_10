@@ -1,0 +1,37 @@
+INPUT:first_name	INPUT:profession	INPUT:isTask	INPUT:group
+		false	4
+John Nash	American Railroad Executive	true	4
+Edward Barnes	American Architect	true	4
+James Gray	Computer Scientist	true	4
+John Abraham	American Football (NFL)	true	4
+Howard Beale	American Historian	true	4
+		false	4
+David Cameron	Scottish Painter	true	4
+James Cameron	Scientist	true	4
+Charles Bass	Medical Doctor	true	4
+Richard Allison	Scottish Architect	true	4
+John Lennon	American Classical Music Composer	true	4
+		false	4
+Albert Bartlett	Physics Professor	true	4
+Paul Barber	Field Hockey Player	true	4
+Ross Allen	Politician	true	4
+Peter Bell	Politician	true	4
+Thomas Moody	Former Cricketer	true	4
+		false	4
+Andrew Murray	Children's Writer	true	4
+Peter Barton	American Actor	true	4
+Glen Baxter	Mathematician	true	4
+George Bailey	British Electrical Engineer and Industrialist	true	4
+James Tait	British Bomber Pilot	true	4
+		false	4
+Arthur Rubinstein	Composer	true	4
+Roger Taylor	American Football	true	4
+John Major	Architect	true	4
+James Anderson	Australian Tennis Player	true	4
+John Quested	Aviator	true	4
+		false	4
+John Badley	Author and Educator	true	4
+Michael Beer	Cricketer	true	4
+George Lucas	Archbishop	true	4
+Christopher Lambert	Record Producer and Label Owner	true	4
+Anne Andersen	Football Player	true	4

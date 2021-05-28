@@ -52,17 +52,20 @@ data = [
         {"question": ["Please find the <b>Middle Name</b> of this person using <a href=\"http://www.google.com\" target=\"_blank\">Google</a> or <a href=\"http://en.wikipedia.org/\" target=\"_blank\">Wikipedia</a>:", "<b>James May</b> (profession: <b>American Psychiatrist</b>)"]}
     ]
 
-file = open("MiddleTaskComplete.tsv", "w")
+
+group = 4
+file = open("SampleTask"+str(group)+".tsv", "w")
 # print(data[0])
-file.write("INPUT:first_name"+"\t"+"INPUT:profession"+"\t"+"INPUT:isTask\n")
+
+file.write("INPUT:first_name"+"\t"+"INPUT:profession"+"\t"+"INPUT:isTask\t"+"INPUT:group\n")
 # file.write(""+"\t"+""+"\t"+"false\n")
-for i in range(len(data)):
+for i in range(30):
     f =re.split('(<b>)|(</b>)', str(data[i]))
     # print(len(f), "Proffesion : ", f[15],'\tName: ',f[9])
     if (i%5 ==0) :
-        file.write(""+"\t"+""+"\t"+"false\n")
-    file.write(f[9]+str('\t')+f[15]+str('\t')+str("true")+str('\n'))
+        file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
+    file.write(f[9]+str('\t')+f[15]+str('\t')+str("true")+str('\t') +str(group) +str('\n'))
     # print(f)
 file.close()
-# f = open("MiddleTaskComplete.tsv", "r")
-# print(f.read()) 
+f = open("SampleTask"+str(group)+".tsv", "r")
+print(f.read()) 
