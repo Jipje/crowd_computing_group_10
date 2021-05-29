@@ -6,6 +6,12 @@
     justify-content: center;
 }
 
+#avatar_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 select {
     width: 65%;
     float: right;
@@ -13,4 +19,8 @@ select {
 
 #avatar_option {
     height: 40px;
+}
+
+#phase {
+    display: none;
 }

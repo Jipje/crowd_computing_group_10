@@ -2,8 +2,12 @@
 <html>
     <body>
         <div id="isTask">{{isTask}}</div>
+        <div id="group">{{group}}</div>
+        <div id="phase"></div>
 
+        <div id="avatar_name"></div>
         <div id="avatarImage"></div>
+
         <br />
         <div id="types"></div>
 
@@ -16,7 +20,12 @@
             </div>
 
             <br />
-            {{field type="input" name="url" width="100%" placeholder="Middle name(s)"}}
+            {{field type="input" name="middle_name" width="100%" placeholder="Middle name(s)"}}
+        </div>
+
+        <div id="avatar_name_input">
+            Give your avatar a name: <br />
+            {{field type="input" name="middle_name" width="100%" placeholder="Avatar Name"}}
         </div>
     </body>
 </html>
