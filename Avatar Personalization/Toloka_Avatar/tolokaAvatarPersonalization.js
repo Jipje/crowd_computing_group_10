@@ -278,12 +278,36 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         this.getDOMElement().querySelector("#phase").innerHTML = currentPhase;
 
         // If surveyQuestion < 2  => show survey question
-        if(surveyQuestion < 2) {
+        if(surveyQuestion < 2 && groupElement.innerHTML !== '6') {
             avatarElement.style.display = 'none';
             this.getDOMElement().querySelector("#avatar_name_input").remove();
             this.getDOMElement().querySelector("#task").style.display = 'none';
            
             surveyQuestion++;
+        }else if(groupElement.innerHTML === '6'){
+            console.log("HI THIS IS GROUP 6")
+            avatar_name = ' ';
+            this.getDOMElement().querySelector("#survey").style.display='none'
+            avatarElement.style.display='none'
+            this.getDOMElement().querySelector("#task").style.display='none'
+            this.getDOMElement().querySelector("#avatarImage").style.display='none'
+            this.getDOMElement().querySelector("#phase").style.display='none'
+            this.getDOMElement().querySelector("#avatar_name_input").style.display='none'
+            this.getDOMElement().querySelector("#avatar_name").style.display='none'
+            if(this.getSolution().task_id === "0"){
+                this.getDOMElement().querySelector("#post2").style.display='none'
+                this.getDOMElement().querySelector("#post3").style.display='none'
+            }else if(this.getSolution().task_id === "1"){
+                this.getDOMElement().querySelector("#post1").style.display='none'
+                this.getDOMElement().querySelector("#post3").style.display='none'
+            }else if(this.getSolution().task_id === "2"){
+                this.getDOMElement().querySelector("#post1").style.display='none'
+                this.getDOMElement().querySelector("#post2").style.display='none'
+            }else if(this.getSolution().task_id === "3"){
+                this.getDOMElement().querySelector("#post1").style.display='none'
+                this.getDOMElement().querySelector("#post2").style.display='none'
+                this.getDOMElement().querySelector("#post3").style.display='none'
+            }
         }else{
             this.getDOMElement().querySelector("#survey").style.display='none';
             // Load avatar only if group number isn't 1
