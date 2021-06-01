@@ -11,23 +11,6 @@
         <br />
         <div id="types"></div>
         <div id="survey">
-            Please answer the following questions:<br /><br />
-            <b>What is your gender</b><br />
-            {{field type="radio" name="gender" value="1" label="Male" hotkey="1"}}
-            {{field type="radio" name="gender" value="2" label="Female" hotkey="2"}}
-            {{field type="radio" name="gender" value="3" label="Other" hotkey="3"}}
-            {{field type="radio" name="gender" value="4" label="Rather not say" hotkey="4"}}<br /><br />
-
-            <b>Choose a skin color</b><br />
-                {{field type="radio" name="color" value="1" label="tanned" hotkey="1"}}
-                {{field type="radio" name="color" value="2" label="yellow" hotkey="2"}}
-                {{field type="radio" name="color" value="3" label="pale" hotkey="3"}}
-                {{field type="radio" name="color" value="4" label="light" hotkey="4"}}
-                {{field type="radio" name="color" value="5" label="brown" hotkey="5"}}
-                {{field type="radio" name="color" value="6" label="dark brown" hotkey="6"}}
-                {{field type="radio" name="color" value="7" label="black" hotkey="7"}}
-                {{field type="radio" name="color" value="8" label="Rather not say" hotkey="8"}}<br /><br />
-                
             Please state how much you agreee or disagree to the following statements.<br /><br />
             <b>I am experienced with avatars.</b> <br />
                 {{field type="radio" name="sentiment" value="1" label="Strongly disagree" hotkey="1"}}
@@ -46,7 +29,7 @@
                 {{field type="radio" name="daily_use" value="6" label="Agree" hotkey="6"}}
                 {{field type="radio" name="daily_use" value="7" label="Strongly agree" hotkey="7"}}<br /><br />
         </div>
-
+        <div id="postSurvey">
         <div id="post2">
             <b>effort/importance</b><br />
             Please state how much you agreee or disagree to the following statements<br /><br />
@@ -213,6 +196,33 @@
             {{field type="radio" name="q6" value="7" label="Extremely" hotkey="7"}} <br /><br />
         </div>
 
+        <div id="post4">
+            <div id="sam">
+
+            </div>
+            Please look at the image above. Then answer how you feel according to the image<br /><br />
+            <b>How happy are you on a scale from 1-5?  (1=Happy; 5=Unappy) </b> <br />
+            {{field type="radio" name="q1" value="1" label="Happy" hotkey="1"}}
+            {{field type="radio" name="q1" value="2" label="" hotkey="2"}}
+            {{field type="radio" name="q1" value="3" label=" disagree" hotkey="3"}}
+            {{field type="radio" name="q1" value="4" label="" hotkey="4"}}
+            {{field type="radio" name="q1" value="5" label="Unhappy agree" hotkey="5"}}<br /><br />
+
+            <b>How excited are you on a scale from 1-5?  (1=Excited; 5=Calm)</b> <br />
+            {{field type="radio" name="q2" value="1" label="Excited" hotkey="1"}}
+            {{field type="radio" name="q2" value="2" label="" hotkey="2"}}
+            {{field type="radio" name="q2" value="3" label=" disagree" hotkey="3"}}
+            {{field type="radio" name="q2" value="4" label="" hotkey="4"}}
+            {{field type="radio" name="q2" value="5" label="Calm" hotkey="5"}} <br /><br />
+
+            <b>How much in control are you on a scale from 1-5? (1=Controlled; 5=In control)</b> <br />
+            {{field type="radio" name="q3" value="1" label="Controlled" hotkey="1"}}
+            {{field type="radio" name="q3" value="2" label="" hotkey="2"}}
+            {{field type="radio" name="q3" value="3" label="" hotkey="3"}}
+            {{field type="radio" name="q3" value="4" label="" hotkey="4"}}
+            {{field type="radio" name="q3" value="5" label="In control" hotkey="5"}} <br /><br />
+        </div>
+        </div>
         <div id="task">
             <div id="question">
                 Find the <b>middle name</b> of this person: <br />

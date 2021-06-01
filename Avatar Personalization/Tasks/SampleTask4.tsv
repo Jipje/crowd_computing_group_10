@@ -1,5 +1,6 @@
 INPUT:first_name	INPUT:profession	INPUT:isTask	INPUT:group
 		false	4
+		false	4
 John Nash	American Railroad Executive	true	4
 Edward Barnes	American Architect	true	4
 James Gray	Computer Scientist	true	4
@@ -35,4 +36,3 @@ Michael Beer	Cricketer	true	4
 George Lucas	Archbishop	true	4
 Christopher Lambert	Record Producer and Label Owner	true	4
 Anne Andersen	Football Player	true	4
-		false	4
