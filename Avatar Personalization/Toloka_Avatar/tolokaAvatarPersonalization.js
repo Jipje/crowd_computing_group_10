@@ -319,7 +319,7 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 
     // Task is out of focus, if this is first task, get the answer for the 'middle name' output (hidden as avatar name) and update global avatar name
     onBlur: function() {
-        if (this.getSolution().task_id === "0" ) avatar_name = this.getSolution().output_values.middle_name;
+        if (this.getSolution().task_id === "1" ) avatar_name = this.getSolution().output_values.middle_name;
     }
 });
 
