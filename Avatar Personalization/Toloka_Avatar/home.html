@@ -10,7 +10,42 @@
 
         <br />
         <div id="types"></div>
+        <div id="survey">
+            Please answer the following questions:<br /><br />
+            <b>What is your gender</b><br />
+            {{field type="radio" name="gender" value="1" label="Male" hotkey="1"}}
+            {{field type="radio" name="gender" value="2" label="Female" hotkey="2"}}
+            {{field type="radio" name="gender" value="3" label="Other" hotkey="3"}}
+            {{field type="radio" name="gender" value="4" label="Rather not say" hotkey="4"}}<br /><br />
 
+            <b>Choose a skin color</b><br />
+                {{field type="radio" name="color" value="1" label="tanned" hotkey="1"}}
+                {{field type="radio" name="color" value="2" label="yellow" hotkey="2"}}
+                {{field type="radio" name="color" value="3" label="pale" hotkey="3"}}
+                {{field type="radio" name="color" value="4" label="light" hotkey="4"}}
+                {{field type="radio" name="color" value="5" label="brown" hotkey="5"}}
+                {{field type="radio" name="color" value="6" label="dark brown" hotkey="6"}}
+                {{field type="radio" name="color" value="7" label="black" hotkey="7"}}
+                {{field type="radio" name="color" value="8" label="Rather not say" hotkey="8"}}<br /><br />
+                
+            Please state how much you agreee or disagree to the following statements.<br /><br />
+            <b>I am experienced with avatars.</b> <br />
+                {{field type="radio" name="sentiment" value="1" label="Strongly disagree" hotkey="1"}}
+                {{field type="radio" name="sentiment" value="2" label="Disagree" hotkey="2"}}
+                {{field type="radio" name="sentiment" value="3" label="Slightly disagree" hotkey="3"}}
+                {{field type="radio" name="sentiment" value="4" label="neutral" hotkey="4"}}
+                {{field type="radio" name="sentiment" value="5" label="Slightly agree" hotkey="5"}}
+                {{field type="radio" name="sentiment" value="6" label="Agree" hotkey="6"}}
+                {{field type="radio" name="sentiment" value="7" label="Strongly agree" hotkey="7"}} <br /><br />
+                <b> I see and use avatars a lot in my daily life.</b> <br />
+                {{field type="radio" name="daily_use" value="1" label="Strongly disagree" hotkey="1"}}
+                {{field type="radio" name="daily_use" value="2" label="Disagree" hotkey="2"}}
+                {{field type="radio" name="daily_use" value="3" label="Slightly disagree" hotkey="3"}}
+                {{field type="radio" name="daily_use" value="4" label="neutral" hotkey="4"}}
+                {{field type="radio" name="daily_use" value="5" label="Slightly agree" hotkey="5"}}
+                {{field type="radio" name="daily_use" value="6" label="Agree" hotkey="6"}}
+                {{field type="radio" name="daily_use" value="7" label="Strongly agree" hotkey="7"}}<br /><br />
+        </div>
         <div id="task">
             <div id="question">
                 Find the <b>middle name</b> of this person: <br />

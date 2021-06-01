@@ -265,7 +265,7 @@ const groupFourOptions = {
 
 let currentPhase = 1;
 let avatar_name = "";
-
+let surveyQuestion = 0;
 exports.Task = extend(TolokaHandlebarsTask, function (options) {
   TolokaHandlebarsTask.call(this, options);
 }, {
@@ -277,23 +277,32 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         let avatarElement = this.getDOMElement().querySelector("#avatarImage");
         this.getDOMElement().querySelector("#phase").innerHTML = currentPhase;
 
-        // Load avatar only if group number isn't 1
-        if (groupElement.innerHTML !== '1') loadAvatar(this.getDOMElement());
-        else avatarElement.remove();
-
-        // Is avatar customization, so remove the task div and load options, and increment currentPhase
-        if (isTaskElement.innerText !== "true") {
-            this.getDOMElement().querySelector("#task").remove();
-            loadOptions(this.getDOMElement());
-            if (currentPhase > 1) this.getDOMElement().querySelector("#avatar_name_input").remove();
-            currentPhase++;
-
-        // Is a task, remove avatar name input area and display avatar name on top
-        } else {
+        // If surveyQuestion < 2  => show survey question
+        if(surveyQuestion < 2) {
+            avatarElement.style.display = 'none';
             this.getDOMElement().querySelector("#avatar_name_input").remove();
-            this.getDOMElement().querySelector("#avatar_name").innerHTML = avatar_name;
-        }
+            this.getDOMElement().querySelector("#task").style.display = 'none';
+           
+            surveyQuestion++;
+        }else{
+            this.getDOMElement().querySelector("#survey").style.display='none';
+            // Load avatar only if group number isn't 1
+            if (groupElement.innerHTML !== '1') loadAvatar(this.getDOMElement());
+            else avatarElement.remove();
 
+            // Is avatar customization, so remove the task div and load options, and increment currentPhase
+            if (isTaskElement.innerText !== "true") {
+                this.getDOMElement().querySelector("#task").remove();
+                loadOptions(this.getDOMElement());
+                if (currentPhase > 1) this.getDOMElement().querySelector("#avatar_name_input").remove();
+                currentPhase++;
+
+            // Is a task, remove avatar name input area and display avatar name on top
+            } else {
+                this.getDOMElement().querySelector("#avatar_name_input").remove();
+                this.getDOMElement().querySelector("#avatar_name").innerHTML = avatar_name;
+            }
+        }
         // Hide isTask and group number that is stored in the DOM
         isTaskElement.style.display = 'none';
         groupElement.style.display = 'none';
