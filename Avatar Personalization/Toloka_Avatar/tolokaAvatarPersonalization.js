@@ -344,11 +344,11 @@ function loadOptions(dom) {
     for (const [key, type] of Object.entries(types)) {
         
         // Is the group number 4? --> Does the current phase include this option? --> Go on and load it
+        // Is the group number 2? --> Does groupTwo options include this option? --> Go on and load it
         // Is the group number 3? --> Go on and load it (so, all options)
-        if ((getCurrentPhaseOptions(phase).includes(key) && group === '4') ||
-             (groupTwoOptions.includes(key) && group === '2') ||
-             group === '3') {
-            
+        if ((getCurrentPhaseOptions(phase).includes(key) && group === '4') || group === '3' ||
+            (groupTwoOptions.includes(key) && group === '2')) 
+        {
             // Create a new div that will store the new option and append it to the div that contains the options
             let div = document.createElement("div");
             div.setAttribute("id", "avatar_option");
