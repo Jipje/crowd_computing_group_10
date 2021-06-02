@@ -1,5 +1,6 @@
 INPUT:first_name	INPUT:profession	INPUT:isTask	INPUT:group
 		false	3
+		false	3
 John Nash	American Railroad Executive	true	3
 Edward Barnes	American Architect	true	3
 James Gray	Computer Scientist	true	3

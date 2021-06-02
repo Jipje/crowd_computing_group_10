@@ -268,9 +268,10 @@ const groupTwoOptions = ['avatarStyles', 'skinColors', 'topTypes']
 
 let currentPhase = 1;
 let avatar_name = "";
+let surveyQuestion = 0;
 
 exports.Task = extend(TolokaHandlebarsTask, function (options) {
-  TolokaHandlebarsTask.call(this, options);
+TolokaHandlebarsTask.call(this, options);
 }, {
     // Called when a task is to be created
     onRender: function() {
@@ -278,25 +279,40 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         let isTaskElement = this.getDOMElement().querySelector("#isTask");
         let groupElement  = this.getDOMElement().querySelector("#group");
         let avatarElement = this.getDOMElement().querySelector("#avatarImage");
+        let postSurvey = this.getDOMElement().querySelector("#postSurvey");
         this.getDOMElement().querySelector("#phase").innerHTML = currentPhase;
 
-        // Load avatar only if group number isn't 1
-        if (groupElement.innerHTML !== '1') loadAvatar(this.getDOMElement());
-        else avatarElement.remove();
-
-        // Is avatar customization, so remove the task div and load options, and increment currentPhase
-        if (isTaskElement.innerText !== "true") {
-            this.getDOMElement().querySelector("#task").remove();
-            loadOptions(this.getDOMElement());
-            if (currentPhase > 1) this.getDOMElement().querySelector("#avatar_name_input").remove();
-            currentPhase++;
-
-        // Is a task, remove avatar name input area and display avatar name on top
-        } else {
+        // If surveyQuestion < 2  => show survey question
+        if (surveyQuestion < 2 && groupElement.innerHTML !== '6') {
+            avatarElement.style.display = 'none';
+            postSurvey.style.display='none';
             this.getDOMElement().querySelector("#avatar_name_input").remove();
-            this.getDOMElement().querySelector("#avatar_name").innerHTML = avatar_name;
-        }
+            this.getDOMElement().querySelector("#task").style.display = 'none';
+            surveyQuestion++;
 
+        } else if (groupElement.innerHTML === '6'){
+            loadSurvey(this.getDOMElement(), this.getSolution().task_id);
+
+        } else {
+            postSurvey.style.display='none';
+            this.getDOMElement().querySelector("#survey").style.display='none';
+            // Load avatar only if group number isn't 1
+            if (groupElement.innerHTML !== '1') loadAvatar(this.getDOMElement());
+            else avatarElement.remove();
+
+            // Is avatar customization, so remove the task div and load options, and increment currentPhase
+            if (isTaskElement.innerText !== "true") {
+                this.getDOMElement().querySelector("#task").remove();
+                loadOptions(this.getDOMElement());
+                if (currentPhase > 1) this.getDOMElement().querySelector("#avatar_name_input").remove();
+                currentPhase++;
+
+            // Is a task, remove avatar name input area and display avatar name on top
+            } else {
+                this.getDOMElement().querySelector("#avatar_name_input").remove();
+                this.getDOMElement().querySelector("#avatar_name").innerHTML = avatar_name;
+            }
+        }
         // Hide isTask and group number that is stored in the DOM
         isTaskElement.style.display = 'none';
         groupElement.style.display = 'none';
@@ -313,7 +329,7 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 
     // Task is out of focus, if this is first task, get the answer for the 'middle name' output (hidden as avatar name) and update global avatar name
     onBlur: function() {
-        if (this.getSolution().task_id === "0" ) avatar_name = this.getSolution().output_values.middle_name;
+        if (this.getSolution().task_id === "1" ) avatar_name = this.getSolution().output_values.middle_name;
     }
 });
 
@@ -394,6 +410,42 @@ function loadAvatar(dom) {
     dom.querySelector("#avatarImage").innerHTML = "<img id='avatar' src='" + url + "' />";
 }
 
+function loadSurvey(dom, task_id) {
+    avatar_name = ' ';
+    dom.querySelector("#survey").style.display='none';
+    dom.querySelector("#task").style.display='none';
+    dom.querySelector("#avatarImage").style.display='none';
+    dom.querySelector("#phase").style.display='none';
+    dom.querySelector("#avatar_name_input").style.display='none';
+    dom.querySelector("#avatar_name").style.display='none;'
+
+    if (task_id === "0") {
+        dom.querySelector("#post2").style.display='none';
+        dom.querySelector("#post3").style.display='none';
+        dom.querySelector("#post4").style.display='none';
+
+    } else if (task_id === "1") {
+        dom.querySelector("#post1").style.display='none';
+        dom.querySelector("#post3").style.display='none';
+        dom.querySelector("#post4").style.display='none';
+
+    } else if (task_id === "2") {
+        dom.querySelector("#post1").style.display='none';
+        dom.querySelector("#post2").style.display='none';
+        dom.querySelector("#post4").style.display='none';
+
+    } else if (task_id === "3") {
+        dom.querySelector("#post1").style.display='none';
+        dom.querySelector("#post2").style.display='none';
+        dom.querySelector("#post3").style.display='none';
+        
+        let image = new Image();
+        image.src= "https://raw.githubusercontent.com/Jipje/crowd_computing_group_10/survey/Avatar%20Personalization/Self-Assessment-Manikin.png";
+        image.alt = "Self Assesment Manikin";
+        dom.querySelector("#sam").appendChild(image)
+    }
+}
+
 // Given a phase number, get a list of options
 function getCurrentPhaseOptions(phase) {
     switch(parseInt(phase)) {
@@ -408,13 +460,13 @@ function getCurrentPhaseOptions(phase) {
 }
 
 function extend(ParentClass, constructorFunction, prototypeHash) {
-  constructorFunction = constructorFunction || function () {};
-  prototypeHash = prototypeHash || {};
-  if (ParentClass) {
+constructorFunction = constructorFunction || function () {};
+prototypeHash = prototypeHash || {};
+if (ParentClass) {
     constructorFunction.prototype = Object.create(ParentClass.prototype);
-  }
-  for (var i in prototypeHash) {
+}
+for (var i in prototypeHash) {
     constructorFunction.prototype[i] = prototypeHash[i];
-  }
-  return constructorFunction;
+}
+return constructorFunction;
 }

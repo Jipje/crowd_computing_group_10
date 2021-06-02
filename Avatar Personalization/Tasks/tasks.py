@@ -58,14 +58,17 @@ file = open("SampleTask"+str(group)+".tsv", "w")
 # print(data[0])
 
 file.write("INPUT:first_name"+"\t"+"INPUT:profession"+"\t"+"INPUT:isTask\t"+"INPUT:group\n")
-# file.write(""+"\t"+""+"\t"+"false\n")
+# file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
+file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
 for i in range(30):
     f =re.split('(<b>)|(</b>)', str(data[i]))
     # print(len(f), "Proffesion : ", f[15],'\tName: ',f[9])
     if (i%5 ==0) :
-        file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
+      file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
     file.write(f[9]+str('\t')+f[15]+str('\t')+str("true")+str('\t') +str(group) +str('\n'))
     # print(f)
+
+# file.write(""+"\t"+""+"\t"+"false\t"+str(group)+"\n")
 file.close()
 f = open("SampleTask"+str(group)+".tsv", "r")
 print(f.read()) 
