@@ -22,7 +22,7 @@ const topTypes = [
     'LongHairFro',
     'LongHairFroBand',
     'LongHairNotTooLong',
-    'LongHairSavedSides',
+    'LongHairShavedSides',
     'LongHairMiaWallace',
     'LongHairStraight',
     'LongHairStraight2',
@@ -36,8 +36,8 @@ const topTypes = [
     'ShortHairShortRound',
     'ShortHairShortWaved',
     'ShortHairSides',
-    'ShortHairTheCeaser',
-    'ShortHairTheCeaserSidePart'
+    'ShortHairTheCaesar',
+    'ShortHairTheCaesarSidePart'
 ]
 
 const accessoriesTypes = [
@@ -214,7 +214,8 @@ const types = {
     topTypes: {
         name: "Top",
         options: topTypes,
-        selection: "NoHair"
+        selection: "NoHair",
+        basicOptions: ['NoHair', 'LongHairStraight', 'ShortHairTheCaesar']
     },
     hairColors: {
         name: "Hair Color",
@@ -227,7 +228,7 @@ const types = {
         selection: "Black"
     },
     accessoriesTypes: {
-        name: "Accessories",
+        name: "Glasses",
         options: accessoriesTypes,
         selection: "Blank"
     },
@@ -263,6 +264,8 @@ const groupFourOptions = {
     phaseSeven: ['facialHairTypes', 'facialHairColors', 'accessoriesTypes']
 }
 
+const groupTwoOptions = ['avatarStyles', 'skinColors', 'topTypes']
+
 let currentPhase = 1;
 let avatar_name = "";
 
@@ -273,7 +276,7 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
     onRender: function() {
         // Get relevant data from DOM and append the current phase for this task inside the DOM so it can be used later
         let isTaskElement = this.getDOMElement().querySelector("#isTask");
-        let groupElement = this.getDOMElement().querySelector("#group");
+        let groupElement  = this.getDOMElement().querySelector("#group");
         let avatarElement = this.getDOMElement().querySelector("#avatarImage");
         this.getDOMElement().querySelector("#phase").innerHTML = currentPhase;
 
@@ -318,15 +321,17 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 function loadOptions(dom) {
     // Get needed data from DOM
     let optionsDiv = dom.querySelector("#types");
-    let groupElement = dom.querySelector("#group").innerHTML;
-    let phase = dom.querySelector("#phase").innerHTML;
+    let group      = dom.querySelector("#group").innerHTML;
+    let phase      = dom.querySelector("#phase").innerHTML;
 
     // Loop through all types of options
     for (const [key, type] of Object.entries(types)) {
         
         // Is the group number 4? --> Does the current phase include this option? --> Go on and load it
         // Is the group number 3? --> Go on and load it (so, all options)
-        if ((getCurrentPhaseOptions(phase).includes(key)  && groupElement === '4') || groupElement === '3') {
+        if ((getCurrentPhaseOptions(phase).includes(key) && group === '4') ||
+             (groupTwoOptions.includes(key) && group === '2') ||
+             group === '3') {
             
             // Create a new div that will store the new option and append it to the div that contains the options
             let div = document.createElement("div");
@@ -353,6 +358,8 @@ function loadOptions(dom) {
 
             // Loop through all the options of the current type and append it as an option to the current select element
             for (const option of Object.values(type.options)) {
+                if (group === '2' && type.name === 'Top' && !types.topTypes.basicOptions.includes(option)) 
+                    continue;
                 let optionElement = document.createElement("option");
                 optionElement.text = option;
                 // Set the default options as selected
