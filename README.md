@@ -11,4 +11,20 @@ Input data:
     - prefession (type: string, required: no)
 
 Output data:
-    - 
+    - answer (type: string, required: yes)
+    - daily_use (type: string, required: no)
+    - q1 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - q2 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - q3 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - q4 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - q5 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - q6 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+    - sentiment (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
+
+
+Task TSV files for the different pools can be found under the folder "Tasks".
+
+    - SampleTask1 - group 1 (No avatar)
+    - SampleTask2 - group 2 (Basic Avatar (background, skin, long/short hair))
+    - SampleTask3 - group 3 (All avatar customization at start)
+    - SampleTask4 - group 4 (All avatar customizations distributed every 5 tasks)
