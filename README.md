@@ -11,7 +11,7 @@ Input data:
 - prefession (type: string, required: no)
 
 Output data:
-- answer (type: string, required: yes)
+- middle_name (type: string, required: yes)
 - daily_use (type: string, required: no)
 - q1 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
 - q2 (type: integer, required: no, allowed values: 1, 2, 3, 4, 5, 6, 7)
